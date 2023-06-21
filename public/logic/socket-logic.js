@@ -1,27 +1,30 @@
 const socket = io();
-var form = document.getElementById('form');
-var input = document.getElementById('input');
+const messages = document.querySelector(".messages");
+const form = document.getElementById('form');
+const input = document.getElementById('input');
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
     if (input.value) {
-    socket.emit('chat message', input.value);
-    input.value = '';
+        socket.emit('chat message', {
+            nickname: localStorage.getItem("nickname"),
+            msg: input.value
+        });
+        input.value = '';
     }
 });
 
 socket.on('chat message', function(msg) {
-    var item = document.createElement('li');
-    item.textContent = msg;
+    console.log(msg)
+    const item = document.createElement('li');
+    item.textContent = `${msg.nickname}: ${msg.msg}`
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
 });
 
 socket.on("user disconected", (msg) => {
-    var item = document.createElement('li');
+    const item = document.createElement('li');
     item.textContent = "User Disconected";
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
 });
-
-console.log("?");

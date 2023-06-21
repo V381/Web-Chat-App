@@ -1,3 +1,3 @@
-import { serialzeForm } from "./nickname.mjs";
+import { setNickname } from "./nickname.mjs";
 
-serialzeForm();
+setNickname();
