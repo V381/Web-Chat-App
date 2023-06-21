@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Socket.IO chat</title>
+    <title>Web Chat</title>
     <link rel="stylesheet" href="css/css.css">
   </head>
   <body>
 
     <header>
-      <form class="nickname">
-        <label>
-          <input type="text" placeholder="Set new nickname" class="nickname-input">
-        </label>
-        <button>Set new nickname</button>
-      </form>
     </header>
 
     <main>
       <section>
-        <ul>
+        <ul class="messages">
           
         </ul>
       </section>
     </main>
     
     <form id="form" action="">
-      <input id="input" autocomplete="off" /><button class="send" placeholder="Send message....">Send</button>
+      <input id="input" autocomplete="off" /><button>Send</button>
     </form>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
-    <script src="logic/socket-logic.js"></script>
+    <script src="../logic/socket-logic.js"></script>
     <script type="module" src="../logic/query-el.mjs"></script>
     <script type="module" src="../logic/nickname.mjs"></script>
     <script type="module" src="../logic/main.mjs"></script>   

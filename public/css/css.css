@@ -1,6 +1,9 @@
 @import url("_variables.css");
 @import url("_reset.css");
 
+body {
+    background-color: var(--main-bg-color);
+}
 
 .nickname{
     background: rgba(0, 0, 0, 0.15);
@@ -34,4 +37,22 @@ input {
     flex-grow: 1;
     border-radius: 2rem;
     margin: 0.25rem;
+    color: white;
+}
+
+button {
+    color: white;
+}
+
+
+.messages > li:nth-child(2n + 1) {
+    background-color: var(--message-bg-color);
+    color: white;
+    padding: 1rem;
+}
+
+.messages > li {
+    background-color: #3f4041;
+    color: white;
+    padding: 1rem;
 }
