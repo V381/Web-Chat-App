@@ -6,15 +6,21 @@
   </head>
   <body>
 
-    <header>
-    </header>
+    
 
     <main>
-      <section>
-        <ul class="messages">
-          
-        </ul>
-      </section>
+      <div class="container">
+        <div class="left-panel">
+          <ul class="nicknames"></ul>
+        </div>
+        <div class="rigth-panel">
+          <section>
+            <ul class="messages">
+              
+            </ul>
+          </section>
+        </div>
+      </div>
     </main>
     
     <form id="form" action="">
@@ -24,6 +30,7 @@
     <script src="../logic/socket-logic.js"></script>
     <script type="module" src="../logic/query-el.mjs"></script>
     <script type="module" src="../logic/nickname.mjs"></script>
+    <script type="module" src="../logic/online-panel.mjs"></script>
     <script type="module" src="../logic/main.mjs"></script>   
   </body>
 </html>

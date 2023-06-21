@@ -15,6 +15,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/public/views/index.html');
 });
 
+const connectedSockets = [];
 
 
 app.post("/set-nickname", async (req, res) => {
@@ -24,14 +25,36 @@ app.post("/set-nickname", async (req, res) => {
 })
 
 io.on('connection', (socket) => {
-    console.log('a user connected');
-    socket.on('disconnect', (msg) => {
-        io.emit("user disconected", msg)
+    let nickname;
+  
+    socket.on('set nickname', (nick) => {
+      nickname = nick;
+      connectedSockets.push({ socket, nickname });
+      console.log(connectedSockets);
     });
-    socket.on('chat message', (msg, nick) => {
-        io.emit('chat message', {message: msg, nickname: nick});
+  
+    socket.on('disconnect', () => {
+      const index = connectedSockets.findIndex((entry) => entry.socket === socket);
+      if (index !== -1) {
+        const { nickname } = connectedSockets[index];
+        connectedSockets.splice(index, 1);
+        io.emit('user disconnected', nickname);
+      }
     });
-});
+  
+    socket.on('chat message', (msg) => {
+      io.emit('chat message', { message: msg.msg, nickname: msg.nickname });
+    });
+  });
+  
+  app.get('/connections', async (req, res) => {
+    const nicknames = await nicknameSavingHelperFunctions.readFile(__dirname + "/models/nicknames.json");
+    nicknames.map((entry) => entry.nickname);
+    res.json({
+      connections: nicknames,
+    });
+  });
+  
 
 app.use(express.static(__dirname + '/public'))
 app.use(express.static(__dirname + '/public/views/css'))
