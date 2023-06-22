@@ -9,5 +9,8 @@
     "devDependencies": {
         "webpack": "^5.87.0",
         "webpack-cli": "^5.1.4"
+    },
+    "scripts": {
+        "start": "node app.js"
     }
 }
