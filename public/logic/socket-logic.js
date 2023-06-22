@@ -39,14 +39,15 @@ socket.on("user connected", (nickname) => {
 });
 
 socket.on("user disconnected", (nickname) => {
-    const li = document.createElement("li");
+    // COMMENT: The hosting website messes this up... Commented for now
+    // const li = document.createElement("li");
     // li.textContent = `${nickname} has disconnected...`; // Commented for hosting purposes....
-    messages.appendChild(li);
-    [...document.querySelector(".nicknames").children].forEach((val) => {
-        if (val.textContent.toLowerCase() === nickname.toLowerCase()) {
-            val.className = "offline";
-        }
-    }) 
+    // messages.appendChild(li);
+    // [...document.querySelector(".nicknames").children].forEach((val) => {
+    //     if (val.textContent.toLowerCase() === nickname.toLowerCase()) {
+    //         val.className = "offline";
+    //     }
+    // }) 
 });
 
 socket.on('user typing', (nickname) => {
