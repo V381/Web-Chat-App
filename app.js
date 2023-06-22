@@ -26,11 +26,15 @@ app.post("/set-nickname", async (req, res) => {
 
 io.on('connection', (socket) => {
     let nickname;
-  
+
     socket.on('set nickname', (nick) => {
-      nickname = nick;
-      connectedSockets.push({ socket, nickname });
-      console.log(connectedSockets);
+        nickname = nick;
+        connectedSockets.push({ socket, nickname });
+        console.log(connectedSockets);
+    });
+    
+    socket.on('user typing', (nickname) => {
+        socket.broadcast.emit('user typing', { nickname });
     });
   
     socket.on('disconnect', () => {
