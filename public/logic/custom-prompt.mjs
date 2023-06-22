@@ -6,13 +6,13 @@ export function waitForCondition(input = "") {
     return new Promise((resolve) => {
       function handleButtonClick() {
         const inputValue = customInput.value.trim();  
-        if (inputValue.length < 10 && inputValue.length !== 0) {
+        if (inputValue.length < 20 && inputValue.length !== 0) {
           customPrompt.removeEventListener("click", handleClickOutside);
           document.removeEventListener("click", handleClickOutside);
           customPrompt.style.display = "none";
           resolve(inputValue);
         } else {
-          alert("Condition not met. Please try again.");
+          alert("Nickname is either empty or has more than 20 characters. Try again!");
         }
       }
   
