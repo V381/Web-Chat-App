@@ -27,3 +27,8 @@ socket.on("user disconected", (msg) => {
     messages.appendChild(item);
     window.scrollTo(0, document.body.scrollHeight);
 });
+
+socket.on('user typing', (nickname) => {
+    const typingMessage = document.querySelector('.typing-message');
+    typingMessage.textContent = `${nickname.nickname} is typing...`;
+  });

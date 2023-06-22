@@ -18,19 +18,21 @@
             <ul class="messages">
               
             </ul>
+            <p class="typing-message"></p>
           </section>
         </div>
       </div>
     </main>
     
     <form id="form" action="">
-      <input id="input" autocomplete="off" /><button>Send</button>
+      <input id="input" autocomplete="off" class="message-input" /><button>Send</button>
     </form>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="../logic/socket-logic.js"></script>
     <script type="module" src="../logic/query-el.mjs"></script>
     <script type="module" src="../logic/nickname.mjs"></script>
     <script type="module" src="../logic/online-panel.mjs"></script>
+    <script type="module" src="../logic/user-is-typing.mjs"></script>
     <script type="module" src="../logic/main.mjs"></script>   
   </body>
 </html>
