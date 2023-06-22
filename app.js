@@ -30,7 +30,8 @@ io.on('connection', (socket) => {
     socket.on('set nickname', (nick) => {
         nickname = nick;
         connectedSockets.push({ socket, nickname });
-        console.log(connectedSockets);
+        io.emit("add-nickname-to-list", nickname);
+        io.emit('user connected', nickname);
     });
     
     socket.on('user typing', (nickname) => {
@@ -38,14 +39,16 @@ io.on('connection', (socket) => {
     });
   
     socket.on('disconnect', () => {
-      const index = connectedSockets.findIndex((entry) => entry.socket === socket);
-      if (index !== -1) {
-        const { nickname } = connectedSockets[index];
-        connectedSockets.splice(index, 1);
-        io.emit('user disconnected', nickname);
-      }
-    });
-  
+        const index = connectedSockets.findIndex((entry) => entry.socket === socket);
+        if (index !== -1) {
+            const { nickname } = connectedSockets[index];
+            connectedSockets.splice(index, 1);
+            io.emit('user disconnected', nickname); 
+        }
+      });
+
+    io.emit('user connected', nickname);
+
     socket.on('chat message', (msg) => {
       io.emit('chat message', { message: msg.msg, nickname: msg.nickname });
     });

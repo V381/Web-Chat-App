@@ -1,8 +1,6 @@
 export function togglePanel() {
-
         const leftPanel = document.querySelector('.left-panel');
         const rightContent = document.querySelector('.right-panel');
-
         leftPanel.addEventListener('click', function() {
         leftPanel.classList.toggle('expanded');
         rightContent.classList.toggle('pushed');

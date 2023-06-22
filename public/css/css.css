@@ -102,6 +102,10 @@ button {
     color: green;
   }
 
+ .offline {
+  color: red !important;
+ }
+
 .typing-message {
   color: white;;
 }
