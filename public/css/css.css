@@ -67,6 +67,7 @@ button {
     background-color: #f0f0f0;
     transition: width 0.3s ease;
     overflow: hidden;
+    overflow: auto;
   }
   
   .right-content {
@@ -91,6 +92,7 @@ button {
 
   .rigth-panel {
     width: 100%;
+    overflow: auto;
   }
 
 
@@ -108,4 +110,46 @@ button {
 
 .typing-message {
   color: white;;
+}
+
+.message-input::placeholder {
+  color: white;
+}
+
+.custom-prompt {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--main-bg-color);
+  padding: 20px;
+  border: 1px solid #ccc;
+  z-index: 100;
+}
+
+.custom-prompt input[type="text"] {
+  width: 200px;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: black;
+}
+
+.custom-prompt button {
+  padding: 5px 10px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 99;
 }

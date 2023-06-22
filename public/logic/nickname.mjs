@@ -1,23 +1,24 @@
+import { waitForCondition } from "./custom-prompt.mjs";
+
 export function setNickname() {
     const socket = io();
     if (localStorage.getItem("nickname") !== null) {
-      if (localStorage.getItem("nickname").length > 0) return;
+      document.querySelector(".backdrop").className = "";
+      document.querySelector(".custom-prompt").parentNode.removeChild( document.querySelector(".custom-prompt"))
+      return;
     }
-    let setNickname = String(prompt("What is your nickname?"));
-
-    if (setNickname.length > 10) {
-      setNickname = String(prompt("What is your nickname?"));
-    }
-
-    socket.emit('set nickname', setNickname);
-    (async () => {
-      fetch('/set-nickname', {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({nickname: setNickname})
-      });
-    })();
-    localStorage.setItem("nickname", setNickname);
+    waitForCondition().then((setNickname) => {
+      socket.emit('set nickname', setNickname);
+      (async () => {
+        fetch('/set-nickname', {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({nickname: setNickname})
+        });
+      })();
+      localStorage.setItem("nickname", setNickname);
+      document.querySelector(".backdrop").className = "";
+    });
 }
