@@ -44,6 +44,10 @@ button {
     color: white;
 }
 
+.messages {
+  word-wrap: break-word 
+}
+
 .messages > li:nth-child(2n + 1) {
     background-color: var(--message-bg-color);
     color: white;
@@ -95,6 +99,9 @@ button {
     overflow: auto;
   }
 
+  .nicknames {
+    word-wrap: break-word;
+  }
 
   .nicknames li {
     background-color: white;
