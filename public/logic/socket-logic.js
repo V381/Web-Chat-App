@@ -40,7 +40,7 @@ socket.on("user connected", (nickname) => {
 
 socket.on("user disconnected", (nickname) => {
     const li = document.createElement("li");
-    li.textContent = `${nickname} has disconnected...`;
+    // li.textContent = `${nickname} has disconnected...`; // Commented for hosting purposes....
     messages.appendChild(li);
     [...document.querySelector(".nicknames").children].forEach((val) => {
         if (val.textContent.toLowerCase() === nickname.toLowerCase()) {
