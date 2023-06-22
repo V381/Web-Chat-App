@@ -60,6 +60,10 @@ button {
     padding: 1rem;
 }
 
+.messages {
+  background-color: inherit;
+}
+
 
 .container {
     display: flex;

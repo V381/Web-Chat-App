@@ -1,8 +1,21 @@
+
 const socket = io();
 const messages = document.querySelector(".messages");
 const form = document.getElementById('form');
 const input = document.getElementById('input');
 const nicknames = document.querySelector(".nicknames > li");
+
+function getCurrentTime() {
+    const now = new Date();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    
+    const currentDateTime = `${day}-${month} ${hours}:${minutes}:${seconds}`;
+    return currentDateTime;
+}
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
@@ -25,7 +38,7 @@ socket.on('add-nickname-to-list', (nickname) => {
 
 socket.on('chat message', (msg) => {
     const item = document.createElement('li');
-    item.textContent = `${msg.nickname}: ${msg.message}`
+    item.innerHTML = `<b>${msg.nickname}</b>: <i>${getCurrentTime()}</i> <br> ${msg.message}`
     messages.appendChild(item);
     messages.scrollIntoView({ behavior: "smooth", block: "end" });
 });
@@ -50,8 +63,3 @@ socket.on("user disconnected", (nickname) => {
     //     }
     // }) 
 });
-
-socket.on('user typing', (nickname) => {
-    const typingMessage = document.querySelector('.typing-message');
-    typingMessage.textContent = `${nickname.nickname} is typing...`;
-  });
