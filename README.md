@@ -9,3 +9,7 @@ Implemented:
 2. Add nickname
 3. Online panel
 4. User disconected
+5. Custom modal
+6. User connected
+
+   Check it out here: https://web-chat-app-by-pavle.adaptable.app/
