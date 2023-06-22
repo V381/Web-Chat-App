@@ -23,9 +23,16 @@
         </div>
       </div>
     </main>
+
+    <div id="custom-prompt" class="custom-prompt">
+      <input type="text" id="custom-input" placeholder="Enter your nickname">
+      <button id="custom-button">Submit</button>
+    </div>
+    <div id="backdrop" class="backdrop"></div>
+    
     
     <form id="form" action="">
-      <input id="input" autocomplete="off" class="message-input" /><button>Send</button>
+      <input id="input" autocomplete="off" class="message-input" placeholder="Write text to chat"/><button>Send</button>
     </form>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script src="../logic/socket-logic.js"></script>
@@ -33,6 +40,7 @@
     <script type="module" src="../logic/nickname.mjs"></script>
     <script type="module" src="../logic/online-panel.mjs"></script>
     <script type="module" src="../logic/user-is-typing.mjs"></script>
+    <script type="module" src="../logic/custom-prompt.mjs"></script>
     <script type="module" src="../logic/main.mjs"></script>   
   </body>
 </html>
