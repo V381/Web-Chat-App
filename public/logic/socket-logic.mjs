@@ -13,7 +13,7 @@ function getCurrentTime() {
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
-    
+
     const currentDateTime = `${day}-${month} ${hours}:${minutes}:${seconds}`;
     return currentDateTime;
 }
@@ -26,7 +26,6 @@ form.addEventListener('submit', function(e) {
             msg: input.value
         });
         input.value = '';
-        
     }
 });
 
@@ -43,8 +42,7 @@ socket.on('chat message', (msg) => {
     item.innerHTML = `<b>${msg.nickname}</b>: <i>${getCurrentTime()}</i> <br> ${messageWithEmoticons}`;
     messages.appendChild(item);
     messages.scrollIntoView({ behavior: "smooth", block: "end" });
-  });
-
+});
 
 socket.on("user connected", (nickname) => {
     const item = document.createElement('li');
@@ -56,13 +54,18 @@ socket.on("user connected", (nickname) => {
 });
 
 socket.on("user disconnected", (nickname) => {
-    // COMMENT: The hosting website messes this up... Commented for now
-    // const li = document.createElement("li");
-    // li.textContent = `${nickname} has disconnected...`; // Commented for hosting purposes....
-    // messages.appendChild(li);
-    // [...document.querySelector(".nicknames").children].forEach((val) => {
-    //     if (val.textContent.toLowerCase() === nickname.toLowerCase()) {
-    //         val.className = "offline";
-    //     }
-    // }) 
+    const listItem = [...document.querySelector(".nicknames").children ].find((val) => {
+        return val.textContent.toLowerCase() === nickname.toLowerCase();
+    })
+    if (listItem) {
+        listItem.remove();
+        localStorage.removeItem("nickname");
+    }
 });
+
+socket.on("update nickname list", (nickname) => {
+    localStorage.removeItem("nickname");
+});
+
+socket.emit('remove nickname', localStorage.getItem("nickname"));
+

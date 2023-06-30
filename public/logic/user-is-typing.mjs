@@ -1,4 +1,5 @@
 
+const socket = io();
 
 function debounce(func, delay) {
     let timeoutId;
