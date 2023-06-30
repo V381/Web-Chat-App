@@ -1,3 +1,4 @@
+import { replaceEmoticonCodesWithEmoticons } from "./emoticons.mjs";
 
 const socket = io();
 const messages = document.querySelector(".messages");
@@ -38,10 +39,12 @@ socket.on('add-nickname-to-list', (nickname) => {
 
 socket.on('chat message', (msg) => {
     const item = document.createElement('li');
-    item.innerHTML = `<b>${msg.nickname}</b>: <i>${getCurrentTime()}</i> <br> ${msg.message}`
+    const messageWithEmoticons = replaceEmoticonCodesWithEmoticons(msg.message);
+    item.innerHTML = `<b>${msg.nickname}</b>: <i>${getCurrentTime()}</i> <br> ${messageWithEmoticons}`;
     messages.appendChild(item);
     messages.scrollIntoView({ behavior: "smooth", block: "end" });
-});
+  });
+
 
 socket.on("user connected", (nickname) => {
     const item = document.createElement('li');
