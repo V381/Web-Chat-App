@@ -53,15 +53,15 @@ socket.on("user connected", (nickname) => {
     }
 });
 
-socket.on("user disconnected", (nickname) => {
-    const listItem = [...document.querySelector(".nicknames").children ].find((val) => {
-        return val.textContent.toLowerCase() === nickname.toLowerCase();
-    })
-    if (listItem) {
-        listItem.remove();
-        localStorage.removeItem("nickname");
-    }
-});
+// socket.on("user disconnected", (nickname) => {
+//     const listItem = [...document.querySelector(".nicknames").children ].find((val) => {
+//         return val.textContent.toLowerCase() === nickname.toLowerCase();
+//     })
+//     if (listItem) {
+//         listItem.remove();
+//         localStorage.removeItem("nickname");
+//     }
+// });
 
 socket.on("update nickname list", (nickname) => {
     localStorage.removeItem("nickname");
